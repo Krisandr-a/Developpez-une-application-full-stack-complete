@@ -60,13 +60,6 @@ public class WebSecurityConfig {
                                 .antMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
                                 .anyRequest().authenticated()
                 );
-// newer version of spring security
-//                .authorizeHttpRequests(authorizeRequests ->
-//                        authorizeRequests // "/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/images/**"
-//                                .requestMatchers("/api/auth/**").permitAll() // Use 'requestMatchers' instead of 'antMatchers'
-////                                .requestMatchers(HttpMethod.POST, "/api/rentals").authenticated()
-//                                .anyRequest().authenticated()
-//                );
         // Add the JWT Token filter before the UsernamePasswordAuthenticationFilter
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
