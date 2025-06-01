@@ -1,1 +1,24 @@
-<p>login works!</p>
+<h2>Se connecter</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Email or Username</mat-label>
+    <input matInput formControlName="usernameOrEmail" />
+    <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">
+      This field is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+    Se connecter
+  </button>
+</form>
