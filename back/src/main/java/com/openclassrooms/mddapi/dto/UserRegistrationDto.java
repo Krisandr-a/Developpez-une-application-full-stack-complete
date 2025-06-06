@@ -14,7 +14,7 @@ public class UserRegistrationDto {
     @Schema(description = "User's email address", example = "user@example.com")
     private String email;
 
-    @Schema(description = "User's full name", example = "Jane Doe")
+    @Schema(description = "Username")
     private String name;
 
     @Schema(description = "User's password", example = "password123")

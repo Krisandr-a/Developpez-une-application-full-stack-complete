@@ -56,8 +56,13 @@ public class AuthController {
     @PostMapping("/register")
     @Operation(summary = "S'inscrire")
     public String registerUser(@RequestBody UserRegistrationDto userRegistrationDto) {
+        // the user can sign in with either their email or username. Both are unique.
         if (userRepository.existsByEmail(userRegistrationDto.getEmail())) {
-            return "Error: Username is already taken!";
+            return "Error: this email has already been registered!";
+        }
+
+        if (userRepository.existsByName(userRegistrationDto.getName())) {
+            return "Error: this username is already taken!";
         }
 
         // Create new user's account
