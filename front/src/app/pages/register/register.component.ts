@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
           this.successMessage = response;
           this.errorMessage = null;
           // Optionally navigate to login
-          this.router.navigate(['/login']);
+          this.router.navigate(['/connexion']);
         },
         error: (err) => {
           this.errorMessage = err.error;
