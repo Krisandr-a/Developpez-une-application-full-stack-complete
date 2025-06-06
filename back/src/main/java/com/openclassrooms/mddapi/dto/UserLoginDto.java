@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserLoginDto {
 
-    @Schema(description = "User's email address", example = "user@example.com")
-    private String email;
+    @Schema(description = "User's email address or username", example = "user@example.com")
+    private String login;
 
     @Schema(description = "User's password", example = "password123")
     private String password;

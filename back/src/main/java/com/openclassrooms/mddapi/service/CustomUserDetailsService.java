@@ -11,16 +11,24 @@ import java.util.Optional;
 public class CustomUserDetailsService  implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
+
     @Override
-    //Users identified by email address (username)
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        com.openclassrooms.mddapi.model.User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + email));
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        //check email and then username for login
+        Optional<com.openclassrooms.mddapi.model.User> userOpt = userRepository.findByEmail(login);
+
+        if (!userOpt.isPresent()) {
+            userOpt = userRepository.findByName(login); // try username
+        }
+
+        com.openclassrooms.mddapi.model.User user = userOpt.orElseThrow(() ->
+                new UsernameNotFoundException("User not Found with login: " + login)
+        );
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
+                user.getName(),
                 user.getPassword(),
-                Collections.emptyList() // basic authentication without authorization checks
+                Collections.emptyList()
         );
     }
 

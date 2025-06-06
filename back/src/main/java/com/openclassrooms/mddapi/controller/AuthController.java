@@ -36,14 +36,13 @@ public class AuthController {
     JwtUtil jwtUtils;
     @Autowired
     AuthService authService;
-
-
+    
     @PostMapping("/login")
     @Operation(summary = "Se connecter")
     public ResponseEntity<Map<String, String>> authenticateUser(@RequestBody UserLoginDto userLoginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        userLoginDto.getEmail(),
+                        userLoginDto.getLogin(),
                         userLoginDto.getPassword()
                 )
         );
