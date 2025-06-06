@@ -1,0 +1,15 @@
+<mat-toolbar class="custom-toolbar">
+
+  <img src="assets/logo_p6.png" alt="Logo" class="logo" />
+
+  <span class="spacer"></span>
+
+  <span class="nav-link" routerLink="/articles">Articles</span>
+  <span class="nav-link" routerLink="/themes">Thèmes</span>
+  <span class="nav-link" (click)="logout()">Se déconnecter</span>
+
+  <button mat-icon-button aria-label="User Profile">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+</mat-toolbar>

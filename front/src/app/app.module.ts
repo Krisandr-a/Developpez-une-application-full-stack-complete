@@ -11,14 +11,20 @@ import { LoginComponent } from './pages/login/login.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { ArticlesComponent } from './pages/articles/articles.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent],
+  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent],
   imports: [
     MatInputModule,
     MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
