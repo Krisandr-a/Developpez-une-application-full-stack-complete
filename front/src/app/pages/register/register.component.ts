@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/services/auth.service'; // Adjust the path
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+    ) {
     this.registerForm = this.fb.group({
-      username: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
@@ -22,8 +30,19 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Register data', this.registerForm.value);
-      // Here you would call your service to register the user
+      const { name, email, password } = this.registerForm.value;
+      this.authService.register({ name, email, password }).subscribe({
+        next: (response) => {
+          this.successMessage = response;
+          this.errorMessage = null;
+          // Optionally navigate to login
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          this.errorMessage = err.error;
+          this.successMessage = null;
+        }
+      });
     }
   }
 
