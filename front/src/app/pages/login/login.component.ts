@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth/services/auth.service'; // Adjust the path
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,13 +27,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-//   onSubmit() {
-//     if (this.loginForm.valid) {
-//       console.log('Login data:', this.loginForm.value);
-//       // TODO: Call your auth service here
-//     }
-//   }
-
   onSubmit() {
     // login is email or username
     if (this.loginForm.valid) {
@@ -43,7 +36,7 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           this.authService.saveToken(response.token);
           this.errorMessage = null;
-          this.router.navigate(['/']); // or your home/dashboard route
+          this.router.navigate(['/articles']); // or your home/dashboard route
         },
         error: (err) => {
           this.errorMessage = 'Invalid login credentials';
