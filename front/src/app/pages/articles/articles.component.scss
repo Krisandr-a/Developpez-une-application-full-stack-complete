@@ -1,0 +1,23 @@
+.article-actions {
+  padding: 2vw 0 1vw 2vw; // top right bottom left (responsive padding)
+  display: flex;
+  align-items: center;
+  margin: 16px;
+
+  @media (max-width: 768px) {
+    padding: 4vw 0 2vw 4vw;
+  }
+}
+
+.create-button {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 8px 16px;
+}
+
+.filter-button {
+  margin-left: auto;
+  background-color: white;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
