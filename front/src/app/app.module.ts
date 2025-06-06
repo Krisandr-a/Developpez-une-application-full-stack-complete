@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,13 +14,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ArticleCardComponent } from './shared/article-card/article-card.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent],
+  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent],
   imports: [
     MatInputModule,
     MatFormFieldModule,
@@ -30,7 +33,9 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

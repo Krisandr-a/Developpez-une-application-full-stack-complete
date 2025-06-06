@@ -1,0 +1,21 @@
+.article-card {
+  margin: 16px 0;
+}
+
+mat-card-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+mat-card-subtitle {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: gray;
+  margin-top: 4px;
+}
+
+.date, .author {
+  white-space: nowrap;
+}
