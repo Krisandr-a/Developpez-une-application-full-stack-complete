@@ -4,8 +4,8 @@
 
   <mat-form-field appearance="fill" class="full-width">
     <mat-label>Email or Username</mat-label>
-    <input matInput formControlName="usernameOrEmail" />
-    <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">
+    <input matInput formControlName="login" />
+    <mat-error *ngIf="loginForm.get('login')?.hasError('required')">
       This field is required
     </mat-error>
   </mat-form-field>

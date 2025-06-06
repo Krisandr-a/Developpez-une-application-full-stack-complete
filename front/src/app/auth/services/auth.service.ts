@@ -8,6 +8,11 @@ interface RegisterPayload {
   password: string;
 }
 
+interface LoginPayload {
+  login: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,5 +25,21 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/register`, payload, {
       responseType: 'text' // backend returns a string
     });
+  }
+
+  login(payload: LoginPayload): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.baseUrl}/login`, payload);
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem('authToken', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  logout() {
+    localStorage.removeItem('authToken');
   }
 }
