@@ -20,9 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ArticleCardComponent } from './shared/article-card/article-card.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent],
+  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent, ProfileComponent],
   imports: [
     MatInputModule,
     MatFormFieldModule,
