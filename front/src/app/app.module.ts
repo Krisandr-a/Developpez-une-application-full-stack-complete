@@ -16,11 +16,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+JwtInterceptor
 
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ArticleCardComponent } from './shared/article-card/article-card.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { JwtInterceptor } from 'src/app/auth/interceptors/jwt.interceptor';
+
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent, ProfileComponent],
@@ -38,7 +42,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     CommonModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

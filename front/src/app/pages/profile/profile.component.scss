@@ -47,3 +47,11 @@ button {
   display: flex;
   justify-content: center;
 }
+
+.form-group input {
+  border: 2px solid #1976d2; /* Angular Material primary default */
+  border-radius: 4px;
+  outline: none;
+}
+
+

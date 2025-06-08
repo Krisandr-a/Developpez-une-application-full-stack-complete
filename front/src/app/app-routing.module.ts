@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'connexion', component: LoginComponent },
   { path: 'inscription', component: RegisterComponent },
   { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
-  { path: 'profil', component: ProfileComponent }, // add guard
+  { path: 'profil', component: ProfileComponent, canActivate: [AuthGuard] },
 
   ];
 
