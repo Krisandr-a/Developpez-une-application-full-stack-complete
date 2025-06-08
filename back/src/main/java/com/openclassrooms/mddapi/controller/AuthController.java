@@ -36,7 +36,7 @@ public class AuthController {
     JwtUtil jwtUtils;
     @Autowired
     AuthService authService;
-    
+
     @PostMapping("/login")
     @Operation(summary = "Se connecter")
     public ResponseEntity<Map<String, String>> authenticateUser(@RequestBody UserLoginDto userLoginDto) {
@@ -77,7 +77,7 @@ public class AuthController {
         return "User registered successfully!";
     }
 
-    @GetMapping("/me")
+    @GetMapping("/profile")
     @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Récupérer les informations sur l'utilisateur actuel")
     public UserDto getCurrentUser() {

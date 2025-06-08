@@ -27,7 +27,7 @@ public class AuthService {
         }
 
         String email = authentication.getName();
-        return userRepository.findByEmail(email)
+        return userRepository.findByName(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }
