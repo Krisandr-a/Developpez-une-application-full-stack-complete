@@ -20,18 +20,18 @@ public class UserDto {
     @Schema(description = "Unique identifier of the user")
     private Integer id;
 
-    @Schema(description = "User's full name", example = "Jane Doe")
+    @Schema(description = "Username", example = "username")
     private String name;
 
     @Schema(description = "User's email address", example = "user@example.com")
     private String email;
 
-    @Schema(description = "Timestamp when the rental was created")
+    @Schema(description = "Timestamp when the user was created")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
-    @Schema(description = "Timestamp when the rental was last updated")
+    @Schema(description = "Timestamp when the user was last updated")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
