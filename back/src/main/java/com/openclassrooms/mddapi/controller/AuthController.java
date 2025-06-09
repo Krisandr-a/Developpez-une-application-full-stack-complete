@@ -121,11 +121,7 @@ public class AuthController {
         currentUser.setUpdatedAt(java.time.LocalDateTime.now());
         userRepository.save(currentUser);
 
-        if (passwordChanged) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password changed. Please log in again.");
-        }
-
-        if (nameChanged || emailChanged) {
+        if (nameChanged || emailChanged || passwordChanged) {
             String newToken = jwtUtils.generateToken(currentUser.getName());
             return ResponseEntity.ok(Map.of("token", newToken));
         }

@@ -18,4 +18,9 @@ export class ProfileService {
   getUserProfile(): Observable<UserProfile> {
     return this.http.get<UserProfile>(this.apiUrl);
   }
+
+  updateUserProfile(data: Partial<UserProfile & { password?: string }>): Observable<any> {
+    return this.http.put(this.apiUrl, data);
+  }
+
 }
