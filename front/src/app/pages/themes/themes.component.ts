@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemesService, Theme } from 'src/app/services/themes.service';
 
 @Component({
   selector: 'app-themes',
@@ -6,27 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./themes.component.scss']
 })
 export class ThemesComponent implements OnInit {
-  themes: Array<{ title: string; description: string }> = [];
+  themes: Theme[] = [];
 
-  constructor() { }
+  constructor(private themesService: ThemesService) { }
 
   ngOnInit(): void {
+    this.themesService.getThemes().subscribe({
+      next: (data) => this.themes = data,
+      error: (err) => console.error('Error loading themes:', err)
+    });
   }
-
-  //test data
-//   themes = [
-//       {
-//         title: 'Ocean Blue',
-//         description: 'A cool and calming theme inspired by the ocean.'
-//       },
-//       {
-//         title: 'Sunset Glow',
-//         description: 'A warm and vibrant theme with sunset tones.'
-//       },
-//       {
-//         title: 'Forest Whisper',
-//         description: 'A nature-based theme with shades of green and brown.'
-//       }
-//     ];
 
 }
