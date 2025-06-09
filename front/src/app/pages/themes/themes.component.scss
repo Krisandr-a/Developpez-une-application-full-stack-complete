@@ -1,0 +1,22 @@
+.theme-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; // Small gap between cards
+  width: 100%;
+  padding: 1rem; // Padding around the container
+  box-sizing: border-box;
+}
+
+.theme-card-wrapper {
+  width: calc(50% - 0.5rem);
+  box-sizing: border-box;
+  flex-grow: 0;  /* Prevent growing */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+@media (max-width: 767px) {
+  .theme-card-wrapper {
+    width: 100%;  /* Full width on small screens */
+  }
+}
+

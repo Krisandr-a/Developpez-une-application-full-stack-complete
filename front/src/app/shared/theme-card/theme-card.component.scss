@@ -1,0 +1,24 @@
+.theme-card {
+  flex: 1 1 calc(50% - 0.5rem);  // Two cards per row with minimal gap
+  padding: 1rem;
+  box-sizing: border-box;        // So padding doesn’t overflow
+  margin: 0;                     // Remove external margin
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;  /* Center horizontally */
+}
+
+mat-card-actions button {
+  width: 33.33%;            /* One-third width */
+  max-width: 200px;         /* Optional max-width to avoid too large button */
+}
+
+
+@media (max-width: 767px) {
+  .theme-card {
+    flex: 1 1 100%;
+  }
+}
+

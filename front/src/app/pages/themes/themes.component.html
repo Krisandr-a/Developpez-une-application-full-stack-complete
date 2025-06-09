@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+
+<div class="theme-list">
+  <div class="theme-card-wrapper" *ngFor="let theme of themes">
+    <app-theme-card
+      [title]="theme.title"
+      [description]="theme.description"
+    ></app-theme-card>
+  </div>
+</div>
+
