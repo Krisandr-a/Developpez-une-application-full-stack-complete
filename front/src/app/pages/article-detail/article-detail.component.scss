@@ -1,0 +1,30 @@
+.article-detail-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.article-title {
+  margin-top: 0;
+  margin-left: 48px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.article-meta {
+  margin: 0.5rem 0 2rem 48px;
+  color: gray;
+  font-size: 0.9rem;
+}
+
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-left: 48px;
+}

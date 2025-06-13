@@ -26,10 +26,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { JwtInterceptor } from 'src/app/auth/interceptors/jwt.interceptor';
 import { ThemeCardComponent } from './shared/theme-card/theme-card.component';
 import { ThemesComponent } from './pages/themes/themes.component';
+import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent, ProfileComponent, ThemeCardComponent, ThemesComponent],
+  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent, ProfileComponent, ThemeCardComponent, ThemesComponent, ArticleDetailComponent],
   imports: [
     MatInputModule,
     MatFormFieldModule,

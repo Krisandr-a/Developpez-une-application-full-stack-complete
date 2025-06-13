@@ -23,6 +23,11 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getAllArticles());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ArticleResponseDto> getArticleById(@PathVariable Integer id) {
+        return ResponseEntity.ok(articleService.getArticleById(id));
+    }
+
     @PostMapping
     public ResponseEntity<ArticleResponseDto> addArticle(@RequestBody ArticleDto dto) {
         return ResponseEntity.ok(articleService.addArticle(dto));

@@ -11,6 +11,7 @@
 <div class="article-list">
   <div class="article-card-wrapper" *ngFor="let article of articles">
     <app-article-card
+      [id]="article.id"
       [title]="article.title"
       [date]="article.createdAt"
       [author]="article.author.name"

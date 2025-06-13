@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+
+<div class="article-detail-container" *ngIf="article">
+  <button mat-icon-button class="back-button" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <h1 class="article-title">{{ article.title }}</h1>
+
+  <div class="article-meta">
+    <span class="date">{{ article.createdAt | date: 'mediumDate' }}</span>
+    &nbsp;&mdash;&nbsp;
+    <span class="author">{{ article.author.name }}</span>
+    &nbsp;&mdash;&nbsp;
+    <span class="theme">{{ article.theme.title }}</span>
+  </div>
+
+  <div class="article-content">
+    {{ article.content }}
+  </div>
+</div>

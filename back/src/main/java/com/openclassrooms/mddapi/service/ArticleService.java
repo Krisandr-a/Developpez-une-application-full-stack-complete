@@ -58,6 +58,13 @@ public class ArticleService {
                 .collect(Collectors.toList());
     }
 
+    public ArticleResponseDto getArticleById(Integer id) {
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Article not found"));
+
+        return mapToDto(article);
+    }
+
     public ArticleResponseDto addArticle(ArticleDto dto) {
         Theme theme = themeRepository.findById(dto.getThemeId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid theme ID"));

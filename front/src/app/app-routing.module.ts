@@ -7,6 +7,9 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ThemesComponent } from './pages/themes/themes.component';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
+
+
 
 
 const routes: Routes = [
@@ -16,6 +19,8 @@ const routes: Routes = [
   { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'themes', component: ThemesComponent, canActivate: [AuthGuard] },
+  { path: 'articles/:id', component: ArticleDetailComponent, canActivate: [AuthGuard] },
+
 
   ];
 

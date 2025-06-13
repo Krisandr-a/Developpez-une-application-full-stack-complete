@@ -10,6 +10,7 @@ export class ArticleCardComponent implements OnInit {
   @Input() date!: Date | string;
   @Input() author!: string;
   @Input() content!: string;
+  @Input() id!: number;
 
   constructor() { }
 
