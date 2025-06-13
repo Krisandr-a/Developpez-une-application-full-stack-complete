@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticlesService, Article } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-articles',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
     isFilterOpen = false;
+    articles: Article[] = [];
 
-  constructor() { }
+  constructor(private articlesService: ArticlesService) { }
 
   ngOnInit(): void {
+    this.articlesService.getAllArticles().subscribe({
+      next: (data) => this.articles = data,
+      error: (err) => console.error('Failed to fetch articles', err)
+    });
   }
 
   toggleFilter() {
