@@ -8,6 +8,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ThemesComponent } from './pages/themes/themes.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
+import { ArticleCreationComponent } from './pages/article-creation/article-creation.component';
+
 
 
 
@@ -17,9 +19,11 @@ const routes: Routes = [
   { path: 'connexion', component: LoginComponent },
   { path: 'inscription', component: RegisterComponent },
   { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
+  { path: 'articles/new', component: ArticleCreationComponent, canActivate: [AuthGuard] },
+  { path: 'articles/:id', component: ArticleDetailComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'themes', component: ThemesComponent, canActivate: [AuthGuard] },
-  { path: 'articles/:id', component: ArticleDetailComponent, canActivate: [AuthGuard] },
+
 
 
   ];

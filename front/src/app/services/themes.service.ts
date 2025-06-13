@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Theme {
+  id: number;
   title: string;
   description: string;
 }

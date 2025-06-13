@@ -34,4 +34,9 @@ export class ArticlesService {
     return this.http.get<Article>(`${this.baseUrl}/${id}`);
   }
 
+  createArticle(article: { title: string; content: string; themeId: number }): Observable<any> {
+    return this.http.post(this.baseUrl, article);
+  }
+
+
 }
