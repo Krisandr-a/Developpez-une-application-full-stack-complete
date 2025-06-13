@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.service;
 
 import com.openclassrooms.mddapi.dto.ArticleDto;
+import com.openclassrooms.mddapi.dto.ArticleResponseDto;
 import com.openclassrooms.mddapi.model.Article;
 import com.openclassrooms.mddapi.model.Theme;
 import com.openclassrooms.mddapi.model.User;
@@ -14,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
@@ -28,11 +30,35 @@ public class ArticleService {
         this.userRepository = userRepository;
     }
 
-    public List<Article> getAllArticles() {
-        return articleRepository.findAll();
+    public ArticleResponseDto mapToDto(Article article) {
+        ArticleResponseDto dto = new ArticleResponseDto();
+        dto.setId(article.getId());
+        dto.setTitle(article.getTitle());
+        dto.setContent(article.getContent());
+        dto.setCreatedAt(article.getCreatedAt());
+
+        ArticleResponseDto.AuthorDto authorDto = new ArticleResponseDto.AuthorDto();
+        authorDto.setName(article.getAuthor().getName());
+        dto.setAuthor(authorDto);
+
+        ArticleResponseDto.ThemeDto themeDto = new ArticleResponseDto.ThemeDto();
+        themeDto.setId(article.getTheme().getId());
+        themeDto.setTitle(article.getTheme().getTitle());
+        themeDto.setDescription(article.getTheme().getDescription());
+        dto.setTheme(themeDto);
+
+        return dto;
     }
 
-    public Article addArticle(ArticleDto dto) {
+
+    public List<ArticleResponseDto> getAllArticles() {
+        return articleRepository.findAll()
+                .stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    public ArticleResponseDto addArticle(ArticleDto dto) {
         Theme theme = themeRepository.findById(dto.getThemeId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid theme ID"));
 
@@ -58,7 +84,7 @@ public class ArticleService {
         article.setTheme(theme);
         article.setAuthor(author);
 
-        return articleRepository.save(article);
-    }
+        Article savedArticle = articleRepository.save(article);
+        return mapToDto(savedArticle);    }
 
 }
