@@ -8,10 +8,13 @@
   </button>
 </div>
 
-<app-article-card
-  *ngFor="let article of articles"
-  [title]="article.title"
-  [date]="article.createdAt"
-  [author]="article.author.name"
-  [content]="article.content">
-</app-article-card>
+<div class="article-list">
+  <div class="article-card-wrapper" *ngFor="let article of articles">
+    <app-article-card
+      [title]="article.title"
+      [date]="article.createdAt"
+      [author]="article.author.name"
+      [content]="article.content">
+    </app-article-card>
+  </div>
+</div>

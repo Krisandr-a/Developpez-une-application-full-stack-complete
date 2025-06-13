@@ -1,5 +1,11 @@
 .article-card {
-  margin: 16px 0;
+  flex: 1 1 calc(50% - 0.5rem);
+  padding: 1rem;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 mat-card-title {
@@ -14,6 +20,10 @@ mat-card-subtitle {
   font-size: 0.9rem;
   color: gray;
   margin-top: 4px;
+}
+
+.date, .author {
+  white-space: nowrap;
 }
 
 .date, .author {
