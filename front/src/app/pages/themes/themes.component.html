@@ -3,8 +3,10 @@
 <div class="theme-list">
   <div class="theme-card-wrapper" *ngFor="let theme of themes">
     <app-theme-card
+      [themeId]="theme.id"
       [title]="theme.title"
       [description]="theme.description"
+      [subscribed]="subscribedThemeIds.has(theme.id)"
     ></app-theme-card>
   </div>
 </div>
