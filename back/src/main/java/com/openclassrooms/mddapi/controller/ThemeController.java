@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.dto.ThemeCreationDto;
 import com.openclassrooms.mddapi.dto.ThemeDto;
 import com.openclassrooms.mddapi.model.Theme;
 import com.openclassrooms.mddapi.service.ThemeService;
@@ -22,8 +23,8 @@ public class ThemeController {
     }
 
     @PostMapping
-    public ResponseEntity<Theme> addTheme(@RequestBody ThemeDto themeDto) {
-        return ResponseEntity.ok(themeService.addTheme(themeDto));
+    public ResponseEntity<Theme> addTheme(@RequestBody ThemeCreationDto dto) {
+        return ResponseEntity.ok(themeService.addTheme(dto));
     }
 
 

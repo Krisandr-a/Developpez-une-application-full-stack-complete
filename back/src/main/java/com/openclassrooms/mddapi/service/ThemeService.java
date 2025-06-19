@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.service;
 
+import com.openclassrooms.mddapi.dto.ThemeCreationDto;
 import com.openclassrooms.mddapi.dto.ThemeDto;
 import com.openclassrooms.mddapi.model.Theme;
 import com.openclassrooms.mddapi.repository.ThemeRepository;
@@ -21,24 +22,24 @@ public class ThemeService {
         return themeRepository.findAll()
                 .stream()
                 .map(theme -> new ThemeDto(
+                        theme.getId(),
                         theme.getTitle(),
                         theme.getDescription()
                 ))
                 .collect(Collectors.toList());
     }
 
-    public Theme addTheme(ThemeDto dto) {
-        // Check for duplicate by title
+    public Theme addTheme(ThemeCreationDto dto) {
         if (themeRepository.findByTitle(dto.getTitle()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Theme with this title already exists.");
         }
 
-        // Convert DTO to entity
         Theme theme = new Theme();
         theme.setTitle(dto.getTitle());
         theme.setDescription(dto.getDescription());
         return themeRepository.save(theme);
     }
+
 
 }
 

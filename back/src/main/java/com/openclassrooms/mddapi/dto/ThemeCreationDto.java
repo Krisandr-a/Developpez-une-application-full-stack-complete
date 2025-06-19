@@ -11,10 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ThemeDto {
-
-    @Schema(description = "Theme ID", example = "1")
-    private Integer id;
+public class ThemeCreationDto {
 
     @Schema(description = "Title", example = "Theme 1")
     private String title;
@@ -22,3 +19,4 @@ public class ThemeDto {
     @Schema(description = "Description", example = "Here is a description...")
     private String description;
 }
+
