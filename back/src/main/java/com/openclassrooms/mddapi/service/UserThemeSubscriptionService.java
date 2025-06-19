@@ -27,10 +27,8 @@ public class UserThemeSubscriptionService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private ThemeRepository themeRepository;
-
     @Autowired
     private UserThemeSubscriptionRepository subscriptionRepository;
 

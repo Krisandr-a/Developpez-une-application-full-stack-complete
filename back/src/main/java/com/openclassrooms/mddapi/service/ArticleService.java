@@ -8,6 +8,7 @@ import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -20,15 +21,12 @@ import java.util.stream.Collectors;
 @Service
 public class ArticleService {
 
-    private final ArticleRepository articleRepository;
-    private final ThemeRepository themeRepository;
-    private final UserRepository userRepository;
-
-    public ArticleService(ArticleRepository articleRepository, ThemeRepository themeRepository, UserRepository userRepository) {
-        this.articleRepository = articleRepository;
-        this.themeRepository = themeRepository;
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private ArticleRepository articleRepository;
+    @Autowired
+    private ThemeRepository themeRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public ArticleResponseDto mapToDto(Article article) {
         ArticleResponseDto dto = new ArticleResponseDto();

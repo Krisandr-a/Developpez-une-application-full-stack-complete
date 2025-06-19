@@ -15,10 +15,6 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-    public AuthService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     public User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

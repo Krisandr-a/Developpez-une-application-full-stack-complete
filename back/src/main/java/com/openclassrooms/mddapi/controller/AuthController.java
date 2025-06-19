@@ -29,15 +29,15 @@ import java.util.Map;
 @Tag(name = "S'inscrire et se connecter")
 public class AuthController {
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    PasswordEncoder encoder;
+    private PasswordEncoder encoder;
     @Autowired
-    JwtUtil jwtUtils;
+    private JwtUtil jwtUtils;
     @Autowired
-    AuthService authService;
+    private AuthService authService;
 
     @PostMapping("/login")
     @Operation(summary = "Se connecter")

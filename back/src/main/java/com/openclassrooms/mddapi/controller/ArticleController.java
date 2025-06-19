@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.controller;
 import com.openclassrooms.mddapi.dto.ArticleDto;
 import com.openclassrooms.mddapi.dto.ArticleResponseDto;
 import com.openclassrooms.mddapi.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +13,8 @@ import java.util.List;
 @RequestMapping("/api/articles")
 public class ArticleController {
 
-    private final ArticleService articleService;
-
-    public ArticleController(ArticleService articleService) {
-        this.articleService = articleService;
-    }
+    @Autowired
+    private ArticleService articleService;
 
     @GetMapping
     public ResponseEntity<List<ArticleResponseDto>> getAllArticles() {
