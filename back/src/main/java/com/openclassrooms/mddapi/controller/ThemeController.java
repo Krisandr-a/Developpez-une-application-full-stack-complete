@@ -19,7 +19,7 @@ public class ThemeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Theme>> getAllThemes() {
+    public ResponseEntity<List<ThemeDto>> getAllThemes() {
         return ResponseEntity.ok(themeService.getAllThemes());
     }
 

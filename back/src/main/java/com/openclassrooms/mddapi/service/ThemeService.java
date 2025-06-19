@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ThemeService {
@@ -17,8 +18,14 @@ public class ThemeService {
         this.themeRepository = themeRepository;
     }
 
-    public List<Theme> getAllThemes() {
-        return themeRepository.findAll();
+    public List<ThemeDto> getAllThemes() {
+        return themeRepository.findAll()
+                .stream()
+                .map(theme -> new ThemeDto(
+                        theme.getTitle(),
+                        theme.getDescription()
+                ))
+                .collect(Collectors.toList());
     }
 
     public Theme addTheme(ThemeDto dto) {
