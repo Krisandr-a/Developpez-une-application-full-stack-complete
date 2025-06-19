@@ -13,7 +13,7 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const token = localStorage.getItem('authToken');  // or whatever your key is
+    const token = localStorage.getItem('authToken');
 
     if (token) {
       const cloned = req.clone({
