@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.service;
 
+import com.openclassrooms.mddapi.dto.UserThemeSubscriptionDto;
 import com.openclassrooms.mddapi.model.Theme;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.model.UserThemeSubscription;
@@ -7,6 +8,7 @@ import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.repository.UserThemeSubscriptionRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,59 +18,53 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class UserThemeSubscriptionService {
 
-    private final UserRepository userRepository;
-    private final ThemeRepository themeRepository;
-    private final UserThemeSubscriptionRepository subscriptionRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserThemeSubscriptionService(UserRepository userRepository,
-                                        ThemeRepository themeRepository,
-                                        UserThemeSubscriptionRepository subscriptionRepository) {
-        this.userRepository = userRepository;
-        this.themeRepository = themeRepository;
-        this.subscriptionRepository = subscriptionRepository;
-    }
+    @Autowired
+    private ThemeRepository themeRepository;
 
-    public void subscribeUserToTheme(Integer themeId) {
-        log.info("Attempting to subscribe to theme with ID: {}", themeId);
+    @Autowired
+    private UserThemeSubscriptionRepository subscriptionRepository;
+
+    private User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            log.error("Authentication object is null");
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not authenticated");
         }
 
         Object principal = authentication.getPrincipal();
-        log.info("Authentication principal: {}", principal.getClass().getName());
+        String username;
 
-        String username; // email is username in setup
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
-            log.info("Extracted username from UserDetails: {}", username);
         } else if (principal instanceof String) {
-            username = (String) principal; // sometimes principal can be String (username)
-            log.info("Extracted username from String principal: {}", username);
+            username = (String) principal;
         } else {
-            log.error("Unknown principal type: {}", principal.getClass().getName());
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid user principal");
         }
 
-        User user = userRepository.findByEmail(username)
+        return userRepository.findByEmail(username)
                 .or(() -> userRepository.findByName(username))
-                .orElseThrow(() -> {
-                    log.error("User not found with email or name: {}", username);
-                    return new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
-                });
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found"));
+    }
 
+    public void subscribeUserToTheme(Integer themeId) {
+        log.info("Attempting to subscribe to theme with ID: {}", themeId);
+
+        User user = getAuthenticatedUser();
         log.info("Found user: id={}, email={}, name={}", user.getId(), user.getEmail(), user.getName());
 
         Theme theme = themeRepository.findById(themeId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Theme not found"));
-
         log.info("Found theme: id={}, title={}", theme.getId(), theme.getTitle());
 
         if (subscriptionRepository.existsByUserAndTheme(user, theme)) {
@@ -83,4 +79,17 @@ public class UserThemeSubscriptionService {
         subscriptionRepository.save(subscription);
         log.info("Subscription created for user {} to theme {}", user.getId(), theme.getId());
     }
+
+    public List<UserThemeSubscriptionDto> getCurrentUserSubscriptions() {
+        User user = getAuthenticatedUser();
+
+        return subscriptionRepository.findAllByUser(user).stream()
+                .map(subscription -> new UserThemeSubscriptionDto(
+                        subscription.getTheme().getId(),
+                        subscription.getTheme().getTitle(),
+                        subscription.getSubscribedAt()
+                ))
+                .collect(Collectors.toList());
+    }
+
 }

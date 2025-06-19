@@ -1,17 +1,23 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.dto.UserThemeSubscriptionDto;
 import com.openclassrooms.mddapi.service.UserThemeSubscriptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/subscriptions")
 public class UserThemeSubscriptionController {
 
-    private final UserThemeSubscriptionService subscriptionService;
+    @Autowired
+    private UserThemeSubscriptionService subscriptionService;
 
-    public UserThemeSubscriptionController(UserThemeSubscriptionService subscriptionService) {
-        this.subscriptionService = subscriptionService;
+    @GetMapping
+    public ResponseEntity<List<UserThemeSubscriptionDto>> getUserSubscriptions() {
+        return ResponseEntity.ok(subscriptionService.getCurrentUserSubscriptions());
     }
 
     @PostMapping("/subscribe")

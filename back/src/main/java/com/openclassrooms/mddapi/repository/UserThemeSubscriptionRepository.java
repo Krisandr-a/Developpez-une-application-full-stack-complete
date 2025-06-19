@@ -5,8 +5,13 @@ import com.openclassrooms.mddapi.model.Theme;
 import com.openclassrooms.mddapi.model.UserThemeSubscription;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Repository
 public interface UserThemeSubscriptionRepository extends CrudRepository<UserThemeSubscription, Integer> {
+
     boolean existsByUserAndTheme(User user, Theme theme);
+
+    List<UserThemeSubscription> findAllByUser(User user);
+
 }
