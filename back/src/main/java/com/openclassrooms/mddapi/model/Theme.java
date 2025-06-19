@@ -22,6 +22,6 @@ public class Theme {
 
     private String description;
 
-//    @OneToMany(mappedBy = "theme")
-//    private Set<UserThemeSubscription> subscriptions;
+    @OneToMany(mappedBy = "theme")
+    private Set<UserThemeSubscription> subscriptions;
 }
