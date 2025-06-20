@@ -1,16 +1,16 @@
 <mat-toolbar class="custom-toolbar">
-
   <img src="assets/logo_p6.png" alt="Logo" class="logo" />
 
   <span class="spacer"></span>
 
-  <span class="nav-link" routerLink="/articles">Articles</span>
-  <span class="nav-link" routerLink="/themes">Thèmes</span>
-  <span class="nav-link" (click)="logout()" routerLink="/connexion">Se déconnecter</span>
+  <ng-container *ngIf="!hideLinks">
+    <span class="nav-link" routerLink="/articles">Articles</span>
+    <span class="nav-link" routerLink="/themes">Thèmes</span>
+    <span class="nav-link" (click)="logout()" routerLink="/connexion">Se déconnecter</span>
 
-  <a mat-icon-button [routerLink]="'/profil'" aria-label="Profil d'utilisateur">
-    <mat-icon>account_circle</mat-icon>
-  </a>
-
-
+    <a mat-icon-button [routerLink]="'/profil'" aria-label="Profil d'utilisateur">
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </ng-container>
 </mat-toolbar>
+

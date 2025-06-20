@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -8,15 +9,31 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  hideLinks = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+//change router back to private after testing
+  constructor(private authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
+    console.log("Testing init")
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(event => {
+        const navEndEvent = event as NavigationEnd;
+        const currentUrl = navEndEvent.urlAfterRedirects;
+
+        console.log('NavigationEnd URL:', currentUrl);
+
+        this.hideLinks = currentUrl.includes('/connexion') || currentUrl.includes('/inscription');
+
+        console.log('hideLinks set to:', this.hideLinks);
+      });
   }
+
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/connexion']);
+    this.router.navigate(['/']);
   }
 
 }
