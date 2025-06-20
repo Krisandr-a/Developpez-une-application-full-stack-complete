@@ -7,8 +7,10 @@ import { ArticlesService, Article } from 'src/app/services/articles.service';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-    isFilterOpen = false;
-    articles: Article[] = [];
+  isFilterOpen = false;
+  articles: Article[] = [];
+  sortDescending = true;
+
 
   constructor(private articlesService: ArticlesService) { }
 
@@ -21,6 +23,16 @@ export class ArticlesComponent implements OnInit {
 
   toggleFilter() {
     this.isFilterOpen = !this.isFilterOpen;
+
+    this.articles.sort((a, b) =>
+      this.sortDescending
+        ? new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        : new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+    );
+
+    this.sortDescending = !this.sortDescending;
   }
+
+
 
 }
