@@ -45,11 +45,14 @@ export class ThemeCardComponent implements OnInit, OnChanges {
     this.loading = true;
     this.subscriptionService.unsubscribeFromTheme(this.themeId).subscribe({
       next: () => {
+        alert('Vous vous êtes désabonné avec succès.');
         this.isSubscribed = false;
         this.loading = false;
+        window.location.reload();
       },
       error: (err) => {
         console.error('Failed to unsubscribe from theme:', err);
+        alert('La désinscription a échoué. Veuillez réessayer plus tard.');
         this.loading = false;
       }
     });
