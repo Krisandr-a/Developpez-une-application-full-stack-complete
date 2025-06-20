@@ -18,6 +18,9 @@ public class UserThemeSubscriptionDto {
     @Schema(description = "Theme title", example = "Theme 1")
     private String themeTitle;
 
+    @Schema(description = "Theme description", example = "Here is a description")
+    private String themeDescription;
+
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Schema(description = "Date of subscription")
     private LocalDateTime subscribedAt;

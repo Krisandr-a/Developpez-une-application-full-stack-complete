@@ -85,6 +85,7 @@ public class UserThemeSubscriptionService {
                 .map(subscription -> new UserThemeSubscriptionDto(
                         subscription.getTheme().getId(),
                         subscription.getTheme().getTitle(),
+                        subscription.getTheme().getDescription(),
                         subscription.getSubscribedAt()
                 ))
                 .collect(Collectors.toList());
