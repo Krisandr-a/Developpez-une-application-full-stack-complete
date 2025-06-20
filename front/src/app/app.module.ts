@@ -28,10 +28,11 @@ import { ThemeCardComponent } from './shared/theme-card/theme-card.component';
 import { ThemesComponent } from './pages/themes/themes.component';
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 import { ArticleCreationComponent } from './pages/article-creation/article-creation.component';
+import { CommentsSectionComponent } from './shared/comments-section/comments-section.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent, ProfileComponent, ThemeCardComponent, ThemesComponent, ArticleDetailComponent, ArticleCreationComponent],
+  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, NavbarComponent, ArticleCardComponent, ProfileComponent, ThemeCardComponent, ThemesComponent, ArticleDetailComponent, ArticleCreationComponent, CommentsSectionComponent],
   imports: [
     MatInputModule,
     MatFormFieldModule,

@@ -1,0 +1,15 @@
+<div class="comments-section">
+  <h2>Commentaires</h2>
+
+  <div class="comment" *ngFor="let c of comments">
+    <strong class="author">{{ c.user }}</strong>
+    <div class="comment-box">{{ c.content }}</div>
+  </div>
+
+  <div class="comment-input">
+    <input [formControl]="commentControl" placeholder="Ajouter un commentaire..." />
+    <button mat-icon-button color="primary" (click)="submitComment()" [disabled]="commentControl.invalid">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>
