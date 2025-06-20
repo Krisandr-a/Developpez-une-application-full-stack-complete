@@ -54,4 +54,34 @@ button {
   outline: none;
 }
 
+.theme-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; // Small gap between cards
+  width: 100%;
+  padding: 1rem; // Padding around the container
+  box-sizing: border-box;
+}
+
+.theme-card-wrapper {
+  width: calc(50% - 0.5rem);
+  box-sizing: border-box;
+  flex-grow: 0;  /* Prevent growing */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+@media (max-width: 767px) {
+  .theme-card-wrapper {
+    width: 100%;  /* Full width on small screens */
+  }
+}
+
+.subscriptions-title {
+  text-align: center;
+  font-size: 2rem;         // Large text
+  font-weight: bold;       // Bold
+  margin: 2rem 0 1rem;     // Spacing above and below
+}
+
+
 

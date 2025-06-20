@@ -18,3 +18,20 @@
     </div>
   </form>
 </div>
+
+<hr class="divider" />
+
+<!-- Abonnements sections -->
+
+<h3 class="subscriptions-title">Abonnements</h3>
+
+<div class="theme-list">
+  <div class="theme-card-wrapper" *ngFor="let theme of subscribedThemes">
+    <app-theme-card
+      [themeId]="theme.themeId"
+      [title]="theme.themeTitle"
+      [description]="'Abonné depuis le ' + (theme.subscribedAt | date: 'dd/MM/yyyy')"
+      [subscribed]="true"
+    ></app-theme-card>
+  </div>
+</div>

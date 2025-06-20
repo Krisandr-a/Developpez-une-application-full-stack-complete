@@ -1,6 +1,7 @@
   import { Component, OnInit } from '@angular/core';
   import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   import { ProfileService, UserProfile } from 'src/app/services/profile.service';
+  import { SubscriptionService, UserThemeSubscriptionDto } from 'src/app/services/subscription.service';
 
   @Component({
     selector: 'app-profile',
@@ -9,8 +10,13 @@
   })
   export class ProfileComponent implements OnInit {
     profileForm!: FormGroup;
+    subscribedThemes: UserThemeSubscriptionDto[] = [];
 
-    constructor(private fb: FormBuilder, private profileService: ProfileService) { }
+    constructor(
+      private fb: FormBuilder,
+      private profileService: ProfileService,
+      private subscriptionService: SubscriptionService
+      ) { }
 
     ngOnInit(): void {
       // Initialize the form with empty/default values
@@ -39,6 +45,16 @@
         },
         error: err => {
           console.error('Failed to load profile:', err);
+        }
+      });
+
+      // Fetch user's subscribed themes
+      this.subscriptionService.getUserSubscriptions().subscribe({
+        next: (subs) => {
+          this.subscribedThemes = subs;
+        },
+        error: (err) => {
+          console.error('Error loading subscriptions:', err);
         }
       });
     }
