@@ -7,7 +7,7 @@
   </div>
 
   <div class="comment-input">
-    <input [formControl]="commentControl" placeholder="Ajouter un commentaire..." />
+    <textarea rows="3" [formControl]="commentControl" placeholder="Ajouter un commentaire..."></textarea>
     <button mat-icon-button color="primary" (click)="submitComment()" [disabled]="commentControl.invalid">
       <mat-icon>send</mat-icon>
     </button>

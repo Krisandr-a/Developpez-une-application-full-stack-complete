@@ -11,35 +11,66 @@
   }
 
   .comment {
+    display: flex;              // make username and comment side-by-side
+    align-items: flex-start;    // align top edges
     margin-bottom: 1rem;
+
+    max-width: 700px;           // constrain width for centering
+    margin-left: auto;
+    margin-right: auto;         // center horizontally
 
     .author {
       font-weight: bold;
-      margin-bottom: 0.2rem;
-      display: block;
+      margin-right: 1rem;       // space between name and comment
+      white-space: nowrap;      // prevent breaking onto multiple lines
+      flex-shrink: 0;           // prevent shrinking
+      width: 150px;             // fixed width or adjust as needed
     }
 
     .comment-box {
       background-color: #f1f1f1;
       padding: 0.8rem;
       border-radius: 8px;
+      flex-grow: 1;             // fill remaining space
+      word-wrap: break-word;    // wrap long content nicely
     }
   }
 
   .comment-input {
+    max-width: 700px;          // same max width as .comment
+    margin-left: auto;
+    margin-right: auto;
+
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
 
-    input {
+    textarea {
       flex: 1;
       padding: 0.5rem;
       border-radius: 20px;
       border: 1px solid #ccc;
+      resize: vertical; /* allows user to resize height if desired */
+      min-height: 60px; /* ensure some minimal height */
+      font-family: inherit;
+      font-size: 1rem;
     }
 
     button {
       align-self: center;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      min-height: 48px;
+
+      mat-icon, svg {
+        display: inline-block;
+        transform: rotate(-45deg);  /* rotate the icon */
+        color: #1976d2;             /* blue color */
+        stroke: currentColor;       /* for SVG stroke */
+        transition: transform 0.3s ease;
+      }
     }
   }
 }
+
