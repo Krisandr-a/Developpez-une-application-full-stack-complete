@@ -30,7 +30,7 @@
     <app-theme-card
       [themeId]="theme.themeId"
       [title]="theme.themeTitle"
-      [description]="'Abonné depuis le ' + (theme.subscribedAt | date: 'dd/MM/yyyy')"
+      [description]="theme.themeDescription"
       [subscribed]="true"
       [unsubscribeMode]="true"
     ></app-theme-card>

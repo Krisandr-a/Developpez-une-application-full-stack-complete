@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 export interface UserThemeSubscriptionDto {
   themeId: number;
   themeTitle: string;
+  themeDescription: string;
   subscribedAt: string;
 }
 
