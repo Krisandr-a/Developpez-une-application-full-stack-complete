@@ -26,5 +26,12 @@ public class UserThemeSubscriptionController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/unsubscribe")
+    public ResponseEntity<Void> unsubscribeFromTheme(@RequestParam Integer themeId) {
+        subscriptionService.unsubscribeUserFromTheme(themeId);
+        return ResponseEntity.ok().build();
+    }
+
+
 }
 

@@ -90,4 +90,19 @@ public class UserThemeSubscriptionService {
                 .collect(Collectors.toList());
     }
 
+    public void unsubscribeUserFromTheme(Integer themeId) {
+        User user = getAuthenticatedUser();
+
+        Theme theme = themeRepository.findById(themeId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Theme not found"));
+
+        UserThemeSubscription themeToDelete = subscriptionRepository.findByUserAndTheme(user, theme)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Subscription not found"));
+
+        subscriptionRepository.delete(themeToDelete);
+        log.info("Unsubscribed user id {} from theme id {}", user.getId(), theme.getId());
+    }
+
+
+
 }
