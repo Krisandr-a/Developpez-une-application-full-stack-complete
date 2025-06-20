@@ -7,9 +7,19 @@
     <button
       mat-raised-button
       color="primary"
+      *ngIf="!unsubscribeMode"
       (click)="subscribe()"
       [disabled]="isSubscribed || loading">
       {{ isSubscribed ? "Déjà abonné" : "S'abonner" }}
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="unsubscribeMode"
+      (click)="unsubscribe()"
+      [disabled]="loading">
+      Se désabonner
     </button>
   </mat-card-actions>
 </mat-card>

@@ -23,4 +23,9 @@ export class SubscriptionService {
   getUserSubscriptions(): Observable<UserThemeSubscriptionDto[]> {
     return this.http.get<UserThemeSubscriptionDto[]>(`${this.baseUrl}`);
   }
+
+  unsubscribeFromTheme(themeId: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/unsubscribe?themeId=${themeId}`);
+  }
+
 }

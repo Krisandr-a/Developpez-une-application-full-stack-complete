@@ -11,6 +11,7 @@ export class ThemeCardComponent implements OnInit, OnChanges {
   @Input() title!: string;
   @Input() description!: string;
   @Input() subscribed = false;
+  @Input() unsubscribeMode = false;
 
   isSubscribed = false;
   loading = false;
@@ -35,6 +36,20 @@ export class ThemeCardComponent implements OnInit, OnChanges {
       },
       error: (err) => {
         console.error('Subscription failed:', err);
+        this.loading = false;
+      }
+    });
+  }
+
+  unsubscribe(): void {
+    this.loading = true;
+    this.subscriptionService.unsubscribeFromTheme(this.themeId).subscribe({
+      next: () => {
+        this.isSubscribed = false;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Failed to unsubscribe from theme:', err);
         this.loading = false;
       }
     });
