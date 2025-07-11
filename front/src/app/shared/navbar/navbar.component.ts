@@ -10,12 +10,13 @@ import { filter } from 'rxjs/operators';
 })
 export class NavbarComponent implements OnInit {
   hideLinks = false;
+  hideNavbar = false;
 
-//change router back to private after testing
-  constructor(private authService: AuthService, public router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     console.log("Testing init")
+
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
@@ -26,8 +27,12 @@ export class NavbarComponent implements OnInit {
 
         this.hideLinks = currentUrl.includes('/connexion') || currentUrl.includes('/inscription');
 
+        this.hideNavbar = currentUrl === '/';
+
         console.log('hideLinks set to:', this.hideLinks);
+        console.log('hideNavbar set to:', this.hideNavbar);
       });
+
   }
 
 
