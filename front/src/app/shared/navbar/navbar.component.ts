@@ -15,22 +15,16 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log("Testing init")
-
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
         const navEndEvent = event as NavigationEnd;
         const currentUrl = navEndEvent.urlAfterRedirects;
 
-        console.log('NavigationEnd URL:', currentUrl);
-
         this.hideLinks = currentUrl.includes('/connexion') || currentUrl.includes('/inscription');
 
         this.hideNavbar = currentUrl === '/';
 
-        console.log('hideLinks set to:', this.hideLinks);
-        console.log('hideNavbar set to:', this.hideNavbar);
       });
 
   }
