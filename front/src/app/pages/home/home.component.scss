@@ -4,7 +4,31 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.content-wrapper {
+  width: 45vw;
+  height: 45vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;    // ✅ center content vertically
+  padding: 2rem 1rem;         // ✅ equal spacing top/bottom
+  box-sizing: border-box;
+}
+
+.content-wrapper img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.buttons-row {
+  display: flex;
+  justify-content: center;
   gap: 1rem;
+  width: 70%;
 }
 
 .center button {
@@ -12,13 +36,29 @@
   color: black !important;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   border: 1px solid black;
-  min-width: 120px;
+  width: 100%;
 }
 
+/* === Mobile layout === */
+@media (max-width: 600px) {
+  .content-wrapper {
+    width: 80%;
+    height: auto;
+  }
 
-.buttons-row {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  .buttons-row {
+    flex-direction: column;
+  }
+
+  .content-wrapper img {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .center button {
+    width: 90%;
+    align-self: center; // keeps it centered within .buttons-row
+  }
 }
+
 
